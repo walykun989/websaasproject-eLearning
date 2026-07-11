@@ -3,7 +3,8 @@ nixPkgs = ["nodejs_20", "php83", "php83Packages.composer", "php83Extensions.pdo"
 
 [phases.install]
 cmds = [
-    "composer install --no-dev --optimize-autoloader"
+    "composer install --no-dev --optimize-autoloader",
+    "touch database/database.sqlite"
 ]
 
 # Skip npm build - using pre-built assets from local build
