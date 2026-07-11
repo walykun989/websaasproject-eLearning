@@ -3,14 +3,10 @@ nixPkgs = ["nodejs_20", "php83", "php83Packages.composer", "php83Extensions.pdo"
 
 [phases.install]
 cmds = [
-    "composer install --no-dev --optimize-autoloader",
-    "npm ci --include=dev"
+    "composer install --no-dev --optimize-autoloader"
 ]
 
-[phases.build]
-cmds = [
-    "npm run build"
-]
+# Skip npm build - using pre-built assets from local build
 
 [start]
 cmd = "php artisan config:cache && php artisan route:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}"
